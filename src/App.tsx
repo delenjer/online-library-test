@@ -1,17 +1,8 @@
 import React from 'react';
 import './App.scss';
 
-import Button from '@material-ui/core/Button';
-import { lastBorrowedBook } from './api/api';
+import { Main } from './components/Main/Main';
 
-console.log(lastBorrowedBook);
-
-function App() {
-  return (
-    <Button variant="contained" color="primary">
-      Hello World
-    </Button>
-  );
-}
+const App = () => <Main />;
 
 export default App;
