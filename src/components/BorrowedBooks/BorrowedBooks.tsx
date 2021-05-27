@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import *as selectors from '../../store/store';
 import { loadingBorrowedBooks } from '../../store/thunk/thunk';
-import { BasicTable } from '../../Template/Table/BooksTableTemplate/BooksTableTemplate';
+import { TableTemplate } from '../../Template/Table/TableTemplate/TableTemplate';
+import { getBorrowedBooks } from '../../store/borrowedBooksReducer/action';
 
 export const BorrowedBooks = () => {
   const dispatch = useDispatch();
@@ -13,9 +14,16 @@ export const BorrowedBooks = () => {
     dispatch(loadingBorrowedBooks());
   }, []);
 
-  const columns = ['Author', 'Title', 'Description', 'Status'];
+  const columns = ['Authors', 'Title', 'Description', 'Status'];
+
+  const handleDeleteRow = (id:string) => {
+
+    dispatch(
+      getBorrowedBooks([...borrowedBooks.filter((item:any) => item.id !== id)])
+    );
+  }
 
   return (
-    <BasicTable rows={borrowedBooks} columns={columns} />
+    <TableTemplate rows={borrowedBooks} columns={columns} handleDeleteRow={handleDeleteRow} />
   );
 };

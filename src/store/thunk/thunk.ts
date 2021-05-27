@@ -1,9 +1,12 @@
 import {
   apiBorrowedBooks,
-  apiReturnedBooks
+  apiReturnedBooks,
+  // getStorageData,
+  // sentReturnedBooks,
 } from '../../api/api';
 import { getBorrowedBooks } from '../borrowedBooksReducer/action';
 import { getReturnedBooks } from '../returnedBooksReducer/action';
+const getStorageData = JSON.parse(localStorage.getItem("returnedBooks") as string) || '';
 
 export const loadingBorrowedBooks = () => {
   return (dispatch: (arg: { type: string }) => void) => {
@@ -13,6 +16,11 @@ export const loadingBorrowedBooks = () => {
 
 export const loadingReturnedBooks = () => {
   return (dispatch: (arg: { type: string }) => void) => {
-    dispatch(getReturnedBooks(apiReturnedBooks));
+    // !getStorageData.length ? dispatch(getReturnedBooks(apiReturnedBooks)) : dispatch(getReturnedBooks(getStorageData))
+    dispatch(getReturnedBooks(apiReturnedBooks))
   }
 }
+
+// export const sentReturnedBooksToStorage = (data:any) => {
+//   return sentReturnedBooks(data);
+// }

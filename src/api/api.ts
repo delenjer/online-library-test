@@ -107,4 +107,32 @@ export const apiReturnedBooks = [
     status: "completed",
     id: "1514735164",
   },
+  {
+    authors: "Biehl Matthias",
+    description: "Looking for Best Practices for RESTful APIs?This book is for you! Why? Because this book is packed with practical experience on what works best for RESTful API Design.",
+    title: "RESTful API Design (API-University Series)",
+    status: "completed",
+    id: "15147351777",
+  },
+  {
+    authors: "Jone Don",
+    description: "Looking for Best Practices for RESTful APIs?This book is for you! Why? Because this book is packed with practical experience on what works best for RESTful API Design.",
+    title: "RESTful API Design (API-University Series)",
+    status: "completed",
+    id: "15147351859",
+  },
 ];
+
+// localStorage.setItem("returnedBooks", JSON.stringify(apiReturnedBooks));
+
+// export const sentReturnedBooks = (data:any) => {
+//   localStorage.setItem("returnedBooks", JSON.stringify(data));
+//
+//   const x = JSON.parse(<string>localStorage.getItem("returnedBooks"));
+//
+//   console.log(x);
+// }
+
+// export const getStorageData = JSON.parse(<string>localStorage.getItem("returnedBooks"));
+
+

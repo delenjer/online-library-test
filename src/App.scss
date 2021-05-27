@@ -1,1 +1,14 @@
+.delete-row {
+  padding: 16px;
+  border-bottom: 1px solid rgba(224, 224, 224, 1);
 
+  &:last-of-type {
+    border-top: 1px solid rgba(224, 224, 224, 1);
+  }
+
+  &__btn {
+    border: none;
+    background-color: initial;
+    cursor: pointer;
+  }
+}
