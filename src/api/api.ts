@@ -123,16 +123,77 @@ export const apiReturnedBooks = [
   },
 ];
 
-// localStorage.setItem("returnedBooks", JSON.stringify(apiReturnedBooks));
-
-// export const sentReturnedBooks = (data:any) => {
-//   localStorage.setItem("returnedBooks", JSON.stringify(data));
-//
-//   const x = JSON.parse(<string>localStorage.getItem("returnedBooks"));
-//
-//   console.log(x);
-// }
-
-// export const getStorageData = JSON.parse(<string>localStorage.getItem("returnedBooks"));
+export const users = [
+  {
+    "id": 1,
+    "name": "Leanne Graham",
+    "username": "Bret",
+    "phone": "1-770-736-8031 x56442",
+    "completed": false,
+  },
+  {
+    "id": 2,
+    "name": "Ervin Howell",
+    "username": "Antonette",
+    "phone": "010-692-6593 x09125",
+    "completed": false,
+  },
+  {
+    "id": 3,
+    "name": "Clementine Bauch",
+    "username": "Clementine",
+    "phone": "1-463-123-4447",
+    "completed": false,
+  },
+  {
+    "id": 4,
+    "name": "Patricia Lebsack",
+    "username": "Lebsack",
+    "phone": "493-170-9623 x156",
+    "completed": true,
+  },
+  {
+    "id": 5,
+    "name": "Chelsey Dietrich",
+    "username": "Lool",
+    "phone": "(254)954-1289",
+    "completed": true,
+  },
+  {
+    "id": 6,
+    "name": "Mrs. Dennis Schulist",
+    "username": "xxx",
+    "phone": "1-477-935-8478 x6430",
+    "completed": true,
+  },
+  {
+    "id": 7,
+    "name": "Kurtis Weissnat",
+    "username": "Weissnat",
+    "phone": "210.067.6132",
+    "completed": true,
+  },
+  {
+    "id": 8,
+    "name": "Nicholas Runolfsdottir V",
+    "username": "Vivo",
+    "phone": "586.493.6943 x140",
+    "completed": false,
+  },
+  {
+    "id": 9,
+    "name": "Glenna Reichert",
+    "username": "Totoro",
+    "phone": "(775)976-6794 x41206",
+    "completed": true,
+  },
+  {
+    "id": 10,
+    "name": "Clementina DuBuque",
+    "username": "Her",
+    "phone": "024-648-3804",
+    "completed": false,
+  }
+]
 
 

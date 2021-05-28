@@ -2,18 +2,13 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
-import borrowedBooksReducer, *as selectorsBorrowedBooks from './borrowedBooksReducer/index';
-import returnedBooksReducer, *as selectorsReturnedBooks from './returnedBooksReducer/index';
+import activeBooksReducer, *as selectorsReturnedBooks from './activeBooksReducer/index';
 
-export const borrowedBooks = (state: any) =>
-  selectorsBorrowedBooks.borrowedBooks(state.borrowedBooks);
-
-export const returnedBooks = (state: any) =>
-  selectorsReturnedBooks.returnedBooks(state.returnedBooks);
+export const activeBooks = (state: any) =>
+  selectorsReturnedBooks.activeBooks(state.activeBooks);
 
 const rootReducer = combineReducers({
-  borrowedBooks: borrowedBooksReducer,
-  returnedBooks: returnedBooksReducer,
+  activeBooks: activeBooksReducer,
 });
 
 const store = createStore(rootReducer, composeWithDevTools(

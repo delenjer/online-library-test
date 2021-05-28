@@ -1,8 +1,6 @@
 import React from 'react';
 import { IInput } from "../../interface/interface";
 
-
-
 export const Input = (
   {
     type,

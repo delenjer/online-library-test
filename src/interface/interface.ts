@@ -14,7 +14,7 @@ export interface IInput {
   onChange: (...arg:any) => void;
 }
 
-export interface IAddInfo {
+export interface ITableHoc {
   handleSubmit: (...arg:any) => void;
   ButtonTitle: string;
   amountInputs: string[];
@@ -22,4 +22,6 @@ export interface IAddInfo {
   placeholder: string[];
   value: string;
   onChange: (...arg:any) => void;
+  addNewToList: any;
+  fieldsOptions: any;
 }

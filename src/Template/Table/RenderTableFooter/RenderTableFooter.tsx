@@ -2,7 +2,7 @@ import React from 'react';
 
 import TableRow from "@material-ui/core/TableRow";
 import TablePagination from "@material-ui/core/TablePagination";
-import TablePaginationActions from "../../TablePaginationActions/TablePaginationActions";
+import TablePaginationActions from "../TablePaginationActions/TablePaginationActions";
 import TableFooter from "@material-ui/core/TableFooter";
 
 export const RenderTableFooter = (

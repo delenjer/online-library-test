@@ -7,10 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import TableFooter from '@material-ui/core/TableFooter';
-import TablePagination from '@material-ui/core/TablePagination';
-
-import TablePaginationActions from '../TablePaginationActions/TablePaginationActions';
+import { RenderRow } from "../RenderRow/RenderRow";
+import { RenderTableFooter } from "../RenderTableFooter/RenderTableFooter";
 
 const useStyles = makeStyles({
   table: {
@@ -18,16 +16,10 @@ const useStyles = makeStyles({
   },
 });
 
-export const BasicTable = ({ rows, columns }:any) => {
+export const TableTemplate = ({ rows, columns, handleDeleteRow }:any) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const classes = useStyles();
-
-  const getKeys = () => {
-    return rows.length > 0 ? Object.keys(rows[0]) : [];
-  }
-
-  const keys = getKeys().filter(item => item !== 'id');
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 
@@ -59,48 +51,21 @@ export const BasicTable = ({ rows, columns }:any) => {
               : rows
           ).map((row:any) => {
             return (
-              <TableRow>
-                <RenderRow row={row} keys={keys} />
-                {/*<TableCell style={{ width: 160 }} align="center">{rows[key]}</TableCell>*/}
-                {/*<TableCell style={{ width: 400 }} align="center">{rows[key]}</TableCell>*/}
-                {/*<TableCell style={{ width: 500 }} align="center">{rows[key]}</TableCell>*/}
-                {/*<TableCell style={{ width: 160 }} align="center">{rows[key]}</TableCell>*/}
+              <TableRow key={row.id}>
+                <RenderRow row={row} columns={columns} handleDeleteRow={handleDeleteRow} />
               </TableRow>
             );
           })}
 
         </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5,{ label: 'All', value: -1 }]}
-              colSpan={3}
-              count={rows.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: { 'aria-label': 'rows per page' },
-                native: true,
-              }}
-              onChangePage={handleChangePage}
-              onChangeRowsPerPage={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
+        <RenderTableFooter
+          rows={rows}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          handleChangePage={handleChangePage}
+          handleChangeRowsPerPage={handleChangeRowsPerPage}
+        />
       </Table>
     </TableContainer>
   );
-}
-
-
-const RenderRow = (props:any) => {
-
-  return props.keys.map((key:any)=>{
-    return (
-      <>
-        <TableCell style={{ width: 160 }} align="center">{props.row[key]}</TableCell>
-      </>
-    )
-  })
 }
