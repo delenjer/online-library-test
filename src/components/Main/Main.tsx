@@ -16,8 +16,9 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import { BorrowedBooks } from '../BorrowedBooks/BorrowedBooks';
-import { Home } from "../Home/Home";
-import { ReturnedBooks } from "../ReturnedBooks/ReturnedBooks";
+import { Home } from '../Home/Home';
+import { ReturnedBooks } from '../ReturnedBooks/ReturnedBooks';
+import { Users } from '../Users/Users';
 import { useStyles } from '../../helpers/helpers';
 
 
@@ -77,6 +78,8 @@ export function Main() {
           <Link to="/last-borrowed-books/">Last borrowed books</Link>
           <br/>
           <Link to="/last-returned-books/">Last returned books</Link>
+          <br/>
+          <Link to="/users/">Users</Link>
         </List>
         <Divider />
       </Drawer>
@@ -92,6 +95,7 @@ export function Main() {
           <Route exact path='/' component={ Home } />
           <Route path='/last-borrowed-books/' component={ BorrowedBooks } />
           <Route path='/last-returned-books/' component={ ReturnedBooks } />
+          <Route path='/users/' component={ Users } />
         </Switch>
       </main>
     </div>

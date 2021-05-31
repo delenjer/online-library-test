@@ -1,11 +1,10 @@
 export interface IUsers {
   phone: string;
   name: string;
-  id: number;
+  id: string;
   username: string;
   status: string
 }
-
 
 export interface IInput {
   type: string;

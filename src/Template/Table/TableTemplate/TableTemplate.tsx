@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const TableTemplate = ({ rows, columns, handleDeleteRow }:any) => {
+export const TableTemplate = ({ rows, columns, handleDeleteRow, handleEdit }:any) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const classes = useStyles();
@@ -52,7 +52,18 @@ export const TableTemplate = ({ rows, columns, handleDeleteRow }:any) => {
           ).map((row:any) => {
             return (
               <TableRow key={row.id}>
-                <RenderRow row={row} columns={columns} handleDeleteRow={handleDeleteRow} />
+                <>
+                  <TableCell>
+                    <button
+                      type="button"
+                      onClick={() => handleEdit(row.id)}
+                    >
+                      Edit
+                    </button>
+                  </TableCell>
+
+                  <RenderRow row={row} columns={columns} handleDeleteRow={handleDeleteRow} />
+                </>
               </TableRow>
             );
           })}

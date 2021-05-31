@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { Input } from "../Template/Input/Input";
 import { ITableHoc } from "../interface/interface";
 import { addBook } from "../store/activeBooksReducer/action";
+import { addNewUser } from "../store/usersReducer/action";
 
 export const TableHoc = (Component: any) => {
 
@@ -24,6 +25,7 @@ export const TableHoc = (Component: any) => {
       e.preventDefault();
 
       dispatch(addBook({...addNewElement, id: uuidv4()}));
+      dispatch(addNewUser({...addNewElement, id: uuidv4()}));
 
       setNewElement(addNewToList);
     }
