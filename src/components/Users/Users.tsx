@@ -7,14 +7,24 @@ import { getUsers, editUsersLIst } from '../../store/usersReducer/action';
 import { DashboardWrap } from '../Dashboard/Dashboard';
 import { ModalTemplate } from '../../Template/ModalTemplate/ModalTemplate';
 import { FormEditTemplate } from '../../Template/FormEditTemplate/FormEditTemplate';
+//@ts-ignore
+import { editDataList } from '../../helpers/helpers';
+
+const edited = {
+  name: '',
+  username: '',
+  phone: '',
+  status: '',
+}
 
 export const Users = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [getEditValue, setEditValue] = useState('');
-  const [getIdElem, setIdElem] = useState('');
+  const [editValue, setEditValue] = useState(edited);
+  const [dataId, setDataId] = useState('');
   const users = useSelector(state => selectors.users(state));
   const dispatch = useDispatch();
-  const columns = ['Name', 'Username', 'Phone', 'Status'];
+
+  const columns = ['Edit', 'Name', 'Username', 'Phone', 'Status', 'Delete'];
   const newUser = {
     name: '',
     username: '',
@@ -38,7 +48,7 @@ export const Users = () => {
   }
 
   const handleEdit = (id:string) => {
-    setIdElem(id);
+    setDataId(id);
     setIsOpen(true);
   }
 
@@ -46,21 +56,50 @@ export const Users = () => {
     setIsOpen(false);
   }
 
-  const handleEditField = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const dataChange = users.map((user:any) => {
-      if (user.id === getIdElem) {
-        const editInList = user.name = getEditValue;
+  // console.log(editValue);
+
+  const handleEditField = (event:any) => {
+    const { name, value } = event.target;
+
+    setEditValue({...editValue, [name]: value});
+  }
+
+  const editDataList = (dataList: any[], id?: any, value?: any) => {
+    const keys =  Object.keys(value);
+
+    // const z = keys.map(key => {
+    //   const data = user[key] = value[key];
+    //
+    //   console.log(data);
+    // })
+
+    const x = dataList.map((user:any) => {
+      if (user.id === id) {
+        const z = keys.map(key => {
+          const data = user[key] = value[key];
+
+          console.log(data);
+        })
+
+        console.log(z);
+
         return {
           ...user,
-          editInList,
         }
       }
 
       return {...user}
     });
 
-    dispatch(editUsersLIst([dataChange]));
+    // console.log(x);
+  }
+
+  const handleSubmitField = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    editDataList(users, dataId, editValue)
+
+    // dispatch(editUsersLIst(editDataList(users, dataId, editValue)));
   }
 
   return (
@@ -81,18 +120,12 @@ export const Users = () => {
         handleClose={closeModal}
       >
         <FormEditTemplate
-          handleSubmit={handleEditField}
+          editFields={editValue}
+          value={''}
+          onChange={handleEditField}
+          handleSubmit={handleSubmitField}
+          handleClose={closeModal}
         />
-
-        {/* <form action="/" onSubmit={(e) => handleEditField(e)}>
-          <input
-            type="text"
-            value={getEditValue}
-            onChange={(e) => {setEditValue(e.target.value)}}
-          />
-
-          <button type="submit">Change field</button>
-        </form> */}
       </ModalTemplate>
     </>
   );

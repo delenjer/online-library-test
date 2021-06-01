@@ -14,7 +14,7 @@ export const ReturnedBooks = () => {
     dispatch(loadingReturnedBooks());
   }, []);
 
-  const columns = ['Authors', 'Title', 'Description', 'Status'];
+  const columns = ['Authors', 'Title', 'Description', 'Status', 'Delete'];
   const newBook = {
     authors: '',
     title: '',

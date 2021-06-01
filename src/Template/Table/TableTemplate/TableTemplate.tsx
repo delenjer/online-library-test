@@ -57,32 +57,15 @@ export const TableTemplate = (
           ).map((row:any) => {
             return (
               <TableRow key={row.id}>
-                <TableCell>
-                  <button
-                    className="edit-row__btn"
-                    type="button"
-                    onClick={() => handleEdit(row.id)}
-                  >
-                    <span className="material-icons">edit_note</span>
-                  </button>
-                </TableCell>
-
-
-                <RenderRow row={row} columns={columns} />
-
-                <TableCell>
-                  <button
-                    className="delete-row__btn"
-                    type="button"
-                    onClick={() => handleDeleteRow(row.id)}
-                  >
-                    <span className="material-icons">delete_outline</span>
-                  </button>
-                </TableCell>
+                <RenderRow
+                  row={row}
+                  columns={columns}
+                  handleEdit={handleEdit}
+                  handleDeleteRow={handleDeleteRow}
+                />
               </TableRow>
             );
           })}
-
         </TableBody>
         <RenderTableFooter
           rows={rows}
