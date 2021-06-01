@@ -2,23 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { loadingUsers } from '../../store/thunk/thunk';
-import *as selectors from '../../store/store';
-import { getUsers } from '../../store/usersReducer/action';
+import * as selectors from '../../store/store';
+import { getUsers, editUsersLIst } from '../../store/usersReducer/action';
 import { DashboardWrap } from '../Dashboard/Dashboard';
 import { ModalTemplate } from '../../Template/ModalTemplate/ModalTemplate';
-
-const customStyles:any = {
-  overlay: {
-    position: 'fixed',
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'rgba(224, 224, 224, 0.5)'
-  }
-}
+import { FormEditTemplate } from '../../Template/FormEditTemplate/FormEditTemplate';
 
 export const Users = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [isEditValue, setEditValue] = useState('');
+  const [getEditValue, setEditValue] = useState('');
   const [getIdElem, setIdElem] = useState('');
   const users = useSelector(state => selectors.users(state));
   const dispatch = useDispatch();
@@ -58,20 +50,18 @@ export const Users = () => {
     e.preventDefault();
     const dataChange = users.map((user:any) => {
       if (user.id === getIdElem) {
-        const edit = user.name = 'ANNA';
+        const editInList = user.name = getEditValue;
         return {
           ...user,
-          edit,
+          editInList,
         }
       }
 
       return {...user}
     });
 
-    console.log(dataChange);
+    dispatch(editUsersLIst([dataChange]));
   }
-
-  console.log(users);
 
   return (
     <>
@@ -86,19 +76,23 @@ export const Users = () => {
       />
 
       <ModalTemplate
-        modalIsOpen={modalIsOpen}
-        customStyles={customStyles}
-        closeModal={closeModal}
+        title="Editing users list"
+        open={modalIsOpen}
+        handleClose={closeModal}
       >
-        <form action="/" onSubmit={(e) => handleEditField(e)}>
+        <FormEditTemplate
+          handleSubmit={handleEditField}
+        />
+
+        {/* <form action="/" onSubmit={(e) => handleEditField(e)}>
           <input
             type="text"
-            value={isEditValue}
+            value={getEditValue}
             onChange={(e) => {setEditValue(e.target.value)}}
           />
 
           <button type="submit">Change field</button>
-        </form>
+        </form> */}
       </ModalTemplate>
     </>
   );
