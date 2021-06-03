@@ -25,7 +25,8 @@ export const FormEditTemplate = (
   }:any
 ) => {
   const classes = useStyles();
-  const fields =  Object.keys(editFields);
+  const fields =  Object.keys(editFields[0]).filter((field) => field !== 'id');
+
 
   return (
     <form
