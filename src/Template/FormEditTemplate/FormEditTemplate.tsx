@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       '& > *': {
         margin: theme.spacing(1),
-        width: '25ch',
+        width: '50%',
       },
     },
   }),
@@ -35,15 +35,16 @@ export const FormEditTemplate = (
     >
       {
         fields.map(field => (
-          <TextField
-            key={field}
-            id={field}
-            label={field}
-            name={field}
-            variant="outlined"
-            value={value[field]}
-            onChange={(e) => {onChange(e)}}
-          />
+          <div key={field} className="field-wrap">
+            <TextField
+              id={field}
+              label={field}
+              name={field}
+              variant="outlined"
+              value={value[field]}
+              onChange={(e) => {onChange(e)}}
+            />
+          </div>
         ))
       }
 

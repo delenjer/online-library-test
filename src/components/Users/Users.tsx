@@ -7,19 +7,9 @@ import { getUsers, editUsersLIst } from '../../store/usersReducer/action';
 import { DashboardWrap } from '../Dashboard/Dashboard';
 import { ModalTemplate } from '../../Template/ModalTemplate/ModalTemplate';
 import { FormEditTemplate } from '../../Template/FormEditTemplate/FormEditTemplate';
-//@ts-ignore
-import { editDataList } from '../../helpers/helpers';
-
-const edited = {
-  name: '',
-  username: '',
-  phone: '',
-  status: '',
-}
 
 export const Users = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
-  // const [editValue, setEditValue] = useState({});
   const [dataId, setDataId] = useState('');
   const users = useSelector(state => selectors.users(state));
   const dispatch = useDispatch();
@@ -56,57 +46,16 @@ export const Users = () => {
     setIsOpen(false);
   }
 
-  // console.log(editValue);
-
   const handleEditField = (event:any) => {
     const { name, value } = event.target;
 
-    const x = users.map((user:any) => {
-      if (user.id === dataId) {
-        // const data = user[name] = value;
-
-        return {
-          ...user,
-          [name]: value,
-        }
-      }
-
-      // return {...user}
-    });
-
-    console.log(x)
-
-    // editDataList(users, dataId, value, name);
-
-    // setEditValue({...editValue, [name]: value});
+    return users.map((user:any) => user.id === dataId ? {...user, user: user[name] = value} : user);
   }
-
-  // const editDataList = (dataList: any[], value:string, name:string, id?: any) => {
-  //   // const keys =  Object.keys(value);
-  //
-  //   const x = dataList.map((user:any) => {
-  //     if (user.id === id) {
-  //       const data = user[name] = value;
-  //
-  //       console.log(name);
-  //       console.log(value);
-  //
-  //       return {
-  //         ...user,
-  //         data,
-  //       }
-  //     }
-  //
-  //     return {...user}
-  //   });
-  //
-  //   // console.log(x);
-  // }
 
   const handleSubmitField = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // dispatch(editUsersLIst(editDataList(users, dataId, editValue)));
+    dispatch(editUsersLIst(users));
   }
 
   return (
@@ -128,7 +77,7 @@ export const Users = () => {
       >
         <FormEditTemplate
           editFields={users}
-          value={''}
+          value=""
           onChange={handleEditField}
           handleSubmit={handleSubmitField}
           handleClose={closeModal}

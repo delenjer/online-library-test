@@ -58,17 +58,3 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
   },
 }));
-
-// export const editDataList = (dataList: any[], id?: any, value?: any) => {
-//   return dataList.map((user:any) => {
-//     if (user.id === id) {
-//       const editInList = user.name = value;
-//       return {
-//         ...user,
-//         editInList,
-//       }
-//     }
-//
-//     return {...user}
-//   });
-// }
