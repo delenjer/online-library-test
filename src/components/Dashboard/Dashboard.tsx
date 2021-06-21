@@ -1,9 +1,9 @@
 import React from 'react';
-import { TableTemplate } from "../../Template/Table/TableTemplate/TableTemplate";
+import { TableService } from "../../Serice/Table/TableService/TableService";
 import { TableHoc } from "../../HOC/TableHoc";
 
 export const Dashboard = (props:any) => (
-  <TableTemplate {...props} />
+  <TableService {...props} />
 );
 
 export const DashboardWrap = TableHoc(Dashboard);

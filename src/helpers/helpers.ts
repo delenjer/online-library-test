@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
 
 const drawerWidth = 240;
 
@@ -58,3 +58,34 @@ export const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
   },
 }));
+
+export const tableUseStyles = makeStyles({
+  table: {
+    minWidth: 650,
+  },
+});
+
+export const formUseStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+        width: '100%',
+      },
+    },
+  }),
+);
+
+export const modalStyles = (theme: Theme) =>
+  createStyles({
+    root: {
+      margin: 0,
+      padding: theme.spacing(2),
+    },
+    closeButton: {
+      position: 'absolute',
+      right: theme.spacing(1),
+      top: theme.spacing(1),
+      color: theme.palette.grey[500],
+    },
+  });

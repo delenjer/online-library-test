@@ -1,3 +1,7 @@
+.table-wrap {
+  margin-top: 50px;
+}
+
 .delete-row {
   padding: 16px;
   border-bottom: 1px solid rgba(224, 224, 224, 1);
@@ -22,3 +26,16 @@
   top: 0;
   left: 0;
 }
+
+.MuiDialog-paperWidthSm {
+ min-width: 800px;
+}
+
+.MuiFormControl-root {
+  width: 100%;
+}
+
+.field-wrap {
+  margin: 8px 0 !important;
+}
+

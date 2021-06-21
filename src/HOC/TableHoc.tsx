@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
-import { Input } from "../Template/Input/Input";
-import { ITableHoc } from "../interface/interface";
 import { addBook } from "../store/activeBooksReducer/action";
 import { addNewUser } from "../store/usersReducer/action";
+import { ModalTemplate } from "../Template/ModalTemplate/ModalTemplate";
+import { FormAddTemplate } from "../Template/FormAddTemplate/FormAddTemplate";
 
-export const TableHoc = (Component: any) => {
+export const TableHoc = (Component: (props: any) => JSX.Element) => {
 
-  return function CallBack (props: any) {
-    const { addNewToList,  fieldsOptions, ButtonTitle } = props;
-
+  return function CallBack (props:any) {
+    const { addNewToList,  fieldsOptions, modalIsOpen, closeModal } = props;
     const [addNewElement, setNewElement] = useState(addNewToList);
     const dispatch = useDispatch();
+
+    console.log(fieldsOptions);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const {name, value} = e.target;
@@ -32,30 +33,20 @@ export const TableHoc = (Component: any) => {
 
     return (
       <>
-        <form action="#" onSubmit={(e) => handleSubmit(e)}>
-          {
-            fieldsOptions.map((field:any) => {
+        <ModalTemplate
+          title="Add to list"
+          open={modalIsOpen}
+          handleClose={closeModal}
+        >
 
-              return (
-                <Input
-                  key={field.name}
-                  type="text"
-                  name={field.name}
-                  placeholder={field.placeholder}
-                  value={addNewElement[field.name]}
-                  onChange={(e) => handleChange(e)}
-                />
-              );
-            })
-          }
-
-          <button
-            // disabled={!addNewElement.authors || !addNewElement.title || !addNewElement.description}
-            type="submit"
-          >
-            {ButtonTitle}
-          </button>
-        </form>
+          <FormAddTemplate
+            handleSubmit={handleSubmit}
+            handleChange={handleChange}
+            addNewElement={addNewElement}
+            handleClose={closeModal}
+            fieldsOptions={fieldsOptions}
+          />
+        </ModalTemplate>
 
         <Component {...props} />
       </>

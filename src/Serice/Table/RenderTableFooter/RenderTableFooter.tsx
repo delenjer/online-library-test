@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import TableRow from "@material-ui/core/TableRow";
 import TablePagination from "@material-ui/core/TablePagination";
 import TablePaginationActions from "../TablePaginationActions/TablePaginationActions";
 import TableFooter from "@material-ui/core/TableFooter";
+import { IRenderTableFooter } from "../../../interface/interface";
 
-export const RenderTableFooter = (
+export const RenderTableFooter: FC<IRenderTableFooter> = (
   {
-    rows,
+    length,
     rowsPerPage,
     page,
     handleChangePage,
     handleChangeRowsPerPage
-  }:any
+  }
 ) => {
 
   return (
@@ -21,7 +22,7 @@ export const RenderTableFooter = (
         <TablePagination
           rowsPerPageOptions={[5,{ label: 'All', value: -1 }]}
           colSpan={3}
-          count={rows.length}
+          count={length}
           rowsPerPage={rowsPerPage}
           page={page}
           SelectProps={{

@@ -1,8 +1,9 @@
+import { IAction } from '../../interface/interface';
 import { GET_USERS, ADD_USER, EDIT_USER_LIST } from './action';
 
 export const users = (state:any) => state;
 
-const usersReducer = (users = [], action:any) => {
+const usersReducer = (users = [], action:IAction) => {
   switch (action.type) {
     case GET_USERS:
       return action.users;

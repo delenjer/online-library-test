@@ -1,25 +1,20 @@
 import React from 'react';
-import {Link, Route, Switch} from 'react-router-dom';
 
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-
-import { BorrowedBooks } from '../BorrowedBooks/BorrowedBooks';
-import { Home } from '../Home/Home';
-import { ReturnedBooks } from '../ReturnedBooks/ReturnedBooks';
-import { Users } from '../Users/Users';
 import { useStyles } from '../../helpers/helpers';
+import { SideBarRouts } from "./SideBarRouts";
+import { SideBarLinks } from "./SideBarLinks";
 
 
 export function Main() {
@@ -54,9 +49,11 @@ export function Main() {
           >
             <MenuIcon />
           </IconButton>
+
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            Crazy library
           </Typography>
+
         </Toolbar>
       </AppBar>
       <Drawer
@@ -74,13 +71,7 @@ export function Main() {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          <Link to="/last-borrowed-books/">Last borrowed books</Link>
-          <br/>
-          <Link to="/last-returned-books/">Last returned books</Link>
-          <br/>
-          <Link to="/users/">Users</Link>
-        </List>
+          <SideBarLinks />
         <Divider />
       </Drawer>
 
@@ -91,12 +82,7 @@ export function Main() {
       >
         <div className={classes.drawerHeader} />
 
-        <Switch>
-          <Route exact path='/' component={ Home } />
-          <Route path='/last-borrowed-books/' component={ BorrowedBooks } />
-          <Route path='/last-returned-books/' component={ ReturnedBooks } />
-          <Route path='/users/' component={ Users } />
-        </Switch>
+        <SideBarRouts />
       </main>
     </div>
   );
