@@ -14,8 +14,6 @@ export const TableHoc = (Component: (props: any) => JSX.Element) => {
     const [addNewElement, setNewElement] = useState(addNewToList);
     const dispatch = useDispatch();
 
-    console.log(fieldsOptions);
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const {name, value} = e.target;
 

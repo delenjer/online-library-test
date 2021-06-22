@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 
+import { columns, newBook, fieldsOptions } from './constants';
 import { IState, IDeleteElement } from "../../interface/interface";
 import *as selectors from '../../store/store';
 import { loadingBorrowedBooks } from '../../store/thunk/thunk';
 import { getActiveBooks } from '../../store/activeBooksReducer/action';
 import { DashboardWrap } from "../Dashboard/Dashboard";
 import Button from "@material-ui/core/Button";
+import {MainTitleTemplate} from "../../Template/MainTitleTemplate/MainTitleTemplate";
 
 export const BorrowedBooks = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -16,21 +18,6 @@ export const BorrowedBooks = () => {
   useEffect(() => {
     dispatch(loadingBorrowedBooks());
   }, []);
-
-  const columns = ['Authors', 'Title', 'Description', 'Status', 'Delete'];
-  const newBook = {
-    authors: '',
-    title: '',
-    description: '',
-    status: '',
-    id: '',
-  }
-  const fieldsOptions = [
-    {name: 'authors', placeholder: 'Author name'},
-    {name: 'title', placeholder: 'Book title'},
-    {name: 'description', placeholder: 'Small description'},
-    {name: 'status', placeholder: 'Status user'},
-  ];
 
   const handleDeleteRow = (id:string) => {
 
@@ -54,6 +41,12 @@ export const BorrowedBooks = () => {
       </Button>
 
       <section className="table-wrap">
+        <MainTitleTemplate
+          pref="borrowed"
+        >
+          Borrowed books
+        </MainTitleTemplate>
+
         <DashboardWrap
           rows={borrowedBooks}
           columns={columns}

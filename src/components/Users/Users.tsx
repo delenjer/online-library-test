@@ -9,6 +9,8 @@ import { DashboardWrap } from '../Dashboard/Dashboard';
 import { ModalTemplate } from '../../Template/ModalTemplate/ModalTemplate';
 import { FormEditTemplate } from '../../Template/FormEditTemplate/FormEditTemplate';
 import Button from "@material-ui/core/Button";
+import { MainTitleTemplate } from "../../Template/MainTitleTemplate/MainTitleTemplate";
+import { columns, newUser, fieldsOptions } from './constants';
 
 export const Users = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -16,21 +18,6 @@ export const Users = () => {
   const [dataId, setDataId] = useState('');
   const users = useSelector((state:IState) => selectors.users(state));
   const dispatch = useDispatch();
-
-  const columns = ['Edit', 'Name', 'Username', 'Phone', 'Status', 'Delete'];
-  const newUser = {
-    name: '',
-    username: '',
-    phone: '',
-    status: '',
-    id: '',
-  }
-  const fieldsOptions = [
-    {name: 'name', placeholder: 'User name'},
-    {name: 'username', placeholder: 'Last name'},
-    {name: 'phone', placeholder: 'Add phone'},
-    {name: 'status', placeholder: 'Status book'},
-  ];
 
   useEffect(() => {
     dispatch(loadingUsers());
@@ -72,6 +59,12 @@ export const Users = () => {
       </Button>
 
       <section className="table-wrap">
+        <MainTitleTemplate
+          pref="users"
+        >
+          Users list
+        </MainTitleTemplate>
+
         <DashboardWrap
           rows={users}
           columns={columns}

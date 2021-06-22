@@ -51,6 +51,7 @@ export const FormAddTemplate: FC<IFormAddTemplate> = (
       }
 
       <Button
+        disabled={Object.values(addNewElement).some(item => item === "")}
         type="submit"
         autoFocus
         onClick={handleClose}

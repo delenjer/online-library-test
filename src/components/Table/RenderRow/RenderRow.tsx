@@ -30,17 +30,17 @@ export const RenderRow: FC<IRenderRow> = ({ columns, row, handleEdit, handleDele
                 cellAction(
                   column,
                   <button
-                    className="edit-row__btn" type="button"
+                    className="row-btn row-btn__edit" type="button"
                     onClick={() => handleEdit(row.id)}
                   >
-                    <span className="material-icons">edit_note</span>
+                    <span className="material-icons row-btn--edit">edit_note</span>
                   </button>,
                   <button
-                    className="delete-row__btn"
+                    className="row-btn"
                     type="button"
                     onClick={() => handleDeleteRow(row.id)}
                   >
-                    <span className="material-icons">delete_outline</span>
+                    <span className="material-icons row-btn--delete">delete_outline</span>
                   </button>,
                   row[column.toLowerCase()]
                 )

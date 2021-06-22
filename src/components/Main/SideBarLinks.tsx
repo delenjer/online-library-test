@@ -1,14 +1,15 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { NavLink  } from "react-router-dom";
 
 import List from "@material-ui/core/List";
 
 export const SideBarLinks = () => (
-  <List>
-    <Link to="/last-borrowed-books/">Last borrowed books</Link>
-    <br/>
-    <Link to="/last-returned-books/">Last returned books</Link>
-    <br/>
-    <Link to="/users/">Users</Link>
-  </List>
+  <div className="sidebar">
+    <List>
+      <NavLink exact  className="sidebar__link" to="/">Home</NavLink >
+      <NavLink  className="sidebar__link" to="/last-borrowed-books/">Last borrowed books</NavLink >
+      <NavLink  className="sidebar__link" to="/last-returned-books/">Last returned books</NavLink >
+      <NavLink  className="sidebar__link" to="/users/">Users</NavLink >
+    </List>
+  </div>
 );

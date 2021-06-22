@@ -88,3 +88,7 @@ export interface IFormAddTemplate {
   fieldsOptions: any,
   addNewElement: IUsers | IBooks,
 }
+
+export interface ITitle {
+  pref: string;
+}

@@ -7,6 +7,8 @@ import { loadingReturnedBooks } from '../../store/thunk/thunk';
 import { getActiveBooks } from "../../store/activeBooksReducer/action";
 import { DashboardWrap } from "../Dashboard/Dashboard";
 import Button from "@material-ui/core/Button";
+import { MainTitleTemplate } from "../../Template/MainTitleTemplate/MainTitleTemplate";
+import { columns, fieldsOptions, newBook } from './constants';
 
 export const ReturnedBooks = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -16,20 +18,6 @@ export const ReturnedBooks = () => {
   useEffect(() => {
     dispatch(loadingReturnedBooks());
   }, []);
-
-  const columns = ['Authors', 'Title', 'Description', 'Status', 'Delete'];
-  const newBook = {
-    authors: '',
-    title: '',
-    description: '',
-    status: 'completed',
-    id: '',
-  }
-  const fieldsOptions = [
-    {name: 'authors', placeholder: 'Author name'},
-    {name: 'title', placeholder: 'Book title'},
-    {name: 'description', placeholder: 'Small description'},
-  ];
 
   const handleDeleteRow = (id:string) => {
 
@@ -53,6 +41,12 @@ export const ReturnedBooks = () => {
       </Button>
 
       <section className="table-wrap">
+        <MainTitleTemplate
+          pref="returned"
+        >
+          Returned books
+        </MainTitleTemplate>
+
         <DashboardWrap
           rows={returnedBooks}
           columns={columns}

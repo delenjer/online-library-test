@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableService } from "../../Serice/Table/TableService/TableService";
+import { TableService } from "../Table/TableService/TableService";
 import { TableHoc } from "../../HOC/TableHoc";
 
 export const Dashboard = (props:any) => (
