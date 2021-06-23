@@ -3,13 +3,18 @@ export interface IState {
   activeBooks: IBooks;
 }
 
+export interface IData {
+  data: any[];
+}
+
+
 export interface IUsers {
   phone: string;
   name: string;
   id: string;
   username: string;
   status: string
-  [column:string]: string,
+  [column:string]: string;
 }
 
 export interface IBooks {
@@ -65,11 +70,13 @@ export interface IRenderTableFooter {
 
 export interface IAction {
   type: any;
+  data: IUsers,
   users: IUsers;
   user: IUsers;
   editValue: IUsers;
   books: IBooks;
   book: IBooks;
+  id: string;
 }
 
 export interface IDeleteElement {

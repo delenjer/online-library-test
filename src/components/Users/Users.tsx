@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { IDeleteElement, IEditElement, IState } from "../../interface/interface";
 import { loadingUsers } from '../../store/thunk/thunk';
 import * as selectors from '../../store/store';
-import { getUsers, editUsersLIst } from '../../store/usersReducer/action';
+import { getUsers, editUsersLIst, removeUser } from '../../store/usersReducer/action';
 import { DashboardWrap } from '../Dashboard/Dashboard';
 import { ModalTemplate } from '../../Template/ModalTemplate/ModalTemplate';
 import { FormEditTemplate } from '../../Template/FormEditTemplate/FormEditTemplate';
@@ -24,7 +24,10 @@ export const Users = () => {
   },[]);
 
   const handleDeleteRow = (id:string) => {
-    dispatch(getUsers([...users.filter((user:IDeleteElement) => user.id !== id)]));
+
+    dispatch(removeUser(id));
+
+    // dispatch(getUsers([users.filter((user:IDeleteElement) => user.id !== id)]));
   }
 
   const handleEdit = (id:string) => {

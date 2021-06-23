@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
 import { addBook } from "../store/activeBooksReducer/action";
-import { addNewUser } from "../store/usersReducer/action";
+import { addNewUser, getUsers } from "../store/usersReducer/action";
 import { ModalTemplate } from "../Template/ModalTemplate/ModalTemplate";
 import { FormAddTemplate } from "../Template/FormAddTemplate/FormAddTemplate";
 
@@ -13,6 +13,13 @@ export const TableHoc = (Component: (props: any) => JSX.Element) => {
     const { addNewToList,  fieldsOptions, modalIsOpen, closeModal } = props;
     const [addNewElement, setNewElement] = useState(addNewToList);
     const dispatch = useDispatch();
+
+   // const [userStorage, setUserStorage] = useState(JSON.parse(localStorage.getItem('userStorage') as string) || {});
+
+    // useEffect(() => {
+    //   localStorage.setItem('userStorage', JSON.stringify(userStorage));
+    //   dispatch(addNewUser({...userStorage, id: uuidv4()}));
+    // },[userStorage]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const {name, value} = e.target;
@@ -25,6 +32,7 @@ export const TableHoc = (Component: (props: any) => JSX.Element) => {
 
       dispatch(addBook({...addNewElement, id: uuidv4()}));
       dispatch(addNewUser({...addNewElement, id: uuidv4()}));
+      // dispatch(getUsers({...addNewElement, id: uuidv4()}));
 
       setNewElement(addNewToList);
     }

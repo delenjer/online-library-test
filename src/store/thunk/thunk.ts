@@ -14,12 +14,12 @@ export const loadingBorrowedBooks = () => {
 
 export const loadingReturnedBooks = () => {
   return (dispatch: (arg: { type: string }) => void) => {
-    dispatch(getActiveBooks(apiReturnedBooks))
+    dispatch(getActiveBooks(apiReturnedBooks));
   }
 }
 
 export const loadingUsers = () => {
   return (dispatch: (arg: any) => void) => {
-    dispatch(getUsers(users))
+    dispatch(getUsers(users));
   }
 }
