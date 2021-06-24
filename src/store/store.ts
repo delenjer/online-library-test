@@ -27,9 +27,7 @@ const store = createStore(rootReducer,persistedState, composeWithDevTools(
 
 store.subscribe(() => {
 
-  saveState({
-    users: store.getState().users,
-  });
+  saveState(store.getState());
 });
 
 export default store;
