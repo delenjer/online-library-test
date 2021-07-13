@@ -1,6 +1,7 @@
 export interface IState {
+  borrowedBooks: IBooks;
+  returnedBooks: IBooks;
   users: IUsers;
-  activeBooks: IBooks;
 }
 
 export interface IData {

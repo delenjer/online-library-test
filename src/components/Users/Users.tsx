@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { IDeleteElement, IEditElement, IState } from "../../interface/interface";
+import { IEditElement, IState } from "../../interface/interface";
 import { loadingUsers } from '../../store/thunk/thunk';
 import * as selectors from '../../store/store';
-import { getUsers, editUsersLIst, removeUser } from '../../store/usersReducer/action';
+import { editUsersLIst, removeUser, addNewUser } from '../../store/usersReducer/action';
 import { DashboardWrap } from '../Dashboard/Dashboard';
 import { ModalTemplate } from '../../Template/ModalTemplate/ModalTemplate';
 import { FormEditTemplate } from '../../Template/FormEditTemplate/FormEditTemplate';
 import Button from "@material-ui/core/Button";
 import { MainTitleTemplate } from "../../Template/MainTitleTemplate/MainTitleTemplate";
 import { columns, newUser, fieldsOptions } from './constants';
+import { v4 as uuidv4 } from "uuid";
 
 export const Users = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalAddIsOpen, setAddIsOpen] = useState(false);
+  const [addNewUSer, setNewUSer] = useState(newUser);
   const [dataId, setDataId] = useState('');
   const users = useSelector((state:IState) => selectors.users(state));
   const dispatch = useDispatch();
@@ -23,11 +25,22 @@ export const Users = () => {
     dispatch(loadingUsers());
   },[]);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setNewUSer({...addNewUSer, [name]: value});
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    dispatch(addNewUser({...addNewUSer, id: uuidv4()}));
+
+    setNewUSer(newUser);
+  }
+
   const handleDeleteRow = (id:string) => {
-
     dispatch(removeUser(id));
-
-    // dispatch(getUsers([users.filter((user:IDeleteElement) => user.id !== id)]));
   }
 
   const handleEdit = (id:string) => {
@@ -71,10 +84,12 @@ export const Users = () => {
         <DashboardWrap
           rows={users}
           columns={columns}
+          addNewElement={addNewUSer}
           handleDeleteRow={handleDeleteRow}
           handleEdit={handleEdit}
           fieldsOptions={fieldsOptions}
-          addNewToList={newUser}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
           modalIsOpen={modalAddIsOpen}
           closeModal={() => setAddIsOpen(false)}
         />

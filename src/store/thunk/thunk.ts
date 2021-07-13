@@ -3,18 +3,19 @@ import {
   apiReturnedBooks,
   users,
 } from '../../api/api';
-import { getActiveBooks } from '../activeBooksReducer/action';
+import { getBorrowedBooks } from '../borrowedBooksReducer/action';
 import { getUsers } from '../usersReducer/action';
+import { getReturnedBooks } from "../returnedBooksReducer/action";
 
 export const loadingBorrowedBooks = () => {
   return (dispatch: (arg: { type: string }) => void) => {
-    dispatch(getActiveBooks(apiBorrowedBooks));
+    dispatch(getBorrowedBooks(apiBorrowedBooks));
   }
 }
 
 export const loadingReturnedBooks = () => {
   return (dispatch: (arg: { type: string }) => void) => {
-    dispatch(getActiveBooks(apiReturnedBooks));
+    dispatch(getReturnedBooks(apiReturnedBooks));
   }
 }
 

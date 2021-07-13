@@ -10,7 +10,7 @@ export const getUsers = (data: IUsers[]) => ({
     data,
 });
 
-export const addNewUser = (user: IUsers[]) => ({
+export const addNewUser = (user: { phone: string; name: string; id: string; username: string; status: string }) => ({
     type: ADD_USER,
     user,
 });
