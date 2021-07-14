@@ -1,13 +1,12 @@
 export interface IState {
-  borrowedBooks: IBooks;
   returnedBooks: IBooks;
   users: IUsers;
+  booksTakenUsers: IBooks;
 }
 
 export interface IData {
   data: any[];
 }
-
 
 export interface IUsers {
   phone: string;
@@ -99,4 +98,12 @@ export interface IFormAddTemplate {
 
 export interface ITitle {
   pref: string;
+}
+
+export interface IAddTakenBook {
+  description: string;
+  id: string;
+  title: string;
+  authors: string;
+  status: string;
 }

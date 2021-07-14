@@ -1,4 +1,4 @@
-export const apiBorrowedBooks = [
+export const apiTakenBooksBooks = [
   {
     authors: "William S. Vincent",
     description: "Learn how to build web APIs with Python and Django",

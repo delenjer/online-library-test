@@ -4,21 +4,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { columns, newBook, fieldsOptions } from './constants';
 import { IState } from "../../interface/interface";
 import *as selectors from '../../store/store';
-import { loadingBorrowedBooks } from '../../store/thunk/thunk';
-import { addBorrowedBook, removeBook } from '../../store/borrowedBooksReducer/action';
+import { loadingTakenBooks } from '../../store/thunk/thunk';
+
 import { DashboardWrap } from "../Dashboard/Dashboard";
 import Button from "@material-ui/core/Button";
 import { MainTitleTemplate } from "../../Template/MainTitleTemplate/MainTitleTemplate";
 import { v4 as uuidv4 } from "uuid";
+import { addTakenBook, removeBook } from "../../store/booksTakenUsersReducer/action";
 
-export const BorrowedBooks = () => {
+export const BooksTakenUsers = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [addNewBook, setNewBook] = useState(newBook);
   const dispatch = useDispatch();
-  const borrowedBooks = useSelector((state: IState) => selectors.borrowedBooks(state));
+  const booksTakenUsers = useSelector((state: IState) => selectors.booksTakenUsers(state));
 
   useEffect(() => {
-    dispatch(loadingBorrowedBooks());
+    dispatch(loadingTakenBooks());
   }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +31,7 @@ export const BorrowedBooks = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch(addBorrowedBook({...addNewBook, id: uuidv4()}));
+    dispatch(addTakenBook({...addNewBook, id: uuidv4()}));
 
     setNewBook(newBook);
   }
@@ -61,7 +62,7 @@ export const BorrowedBooks = () => {
         </MainTitleTemplate>
 
         <DashboardWrap
-          rows={borrowedBooks}
+          rows={booksTakenUsers}
           columns={columns}
           addNewElement={addNewBook}
           handleDeleteRow={handleDeleteRow}

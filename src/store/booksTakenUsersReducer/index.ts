@@ -1,9 +1,9 @@
-import { IAction } from "../../interface/interface";
+import { IAction, IBooks } from "../../interface/interface";
 import { GET_BOOKS, ADD_BOOK, REMOVE_BOOK } from './action';
 
-export const returnedBooks = (state: any) => state;
+export const booksTakenUsers = (state:IBooks) => state;
 
-const returnedBooksReducer = (books = [], action: IAction) => {
+const booksTakenUsersReducer = (books = [], action: IAction) => {
   switch (action.type) {
     case GET_BOOKS:
       const { booksList }:any = action;
@@ -17,13 +17,11 @@ const returnedBooksReducer = (books = [], action: IAction) => {
       return [book, ...books];
 
     case REMOVE_BOOK:
-      const { id }:any = action;
-
-      return books.filter((book:any) => book.id !== id);
+      return books.filter((book:any) => book.id !== action.id);
 
     default:
       return books;
   }
 }
 
-export default returnedBooksReducer;
+export default booksTakenUsersReducer;
