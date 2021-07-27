@@ -5,6 +5,7 @@ import { Home } from "../Home/Home";
 import { BooksTakenUsers } from "../BooksTakenUsers/BooksTakenUsers";
 import { ReturnedBooks } from "../ReturnedBooks/ReturnedBooks";
 import { Users } from "../Users/Users";
+import { CalendarService } from "../CalendarService/CalendarService";
 
 export const SideBarRouts = () => (
   <Switch>
@@ -12,5 +13,6 @@ export const SideBarRouts = () => (
     <Route path='/taken-books/' component={ BooksTakenUsers } />
     <Route path='/returned-books/' component={ ReturnedBooks } />
     <Route path='/users/' component={ Users } />
+    <Route path='/calendar/' component={ CalendarService } />
   </Switch>
 );

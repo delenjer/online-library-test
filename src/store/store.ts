@@ -7,13 +7,14 @@ import { IState } from "../interface/interface";
 import returnedBooksReducer, *as selectorsReturnedBooks from './returnedBooksReducer/index';
 import usersReducer, *as selectorsUserData from './usersReducer/index';
 import booksTakenUsersReducer, *as selectorsTakenBooks from './booksTakenUsersReducer/index';
+import calendarEventsReducer, *as selectorCalendarEvents from './calendarReducer/index';
 import { loadState, saveState } from "./localeStorage/localeStorage";
 
-export const returnedBooks = (state: IState) =>
-  selectorsReturnedBooks.returnedBooks(state.returnedBooks);
+export const returnedBooks = (state: IState) => selectorsReturnedBooks.returnedBooks(state.returnedBooks);
 
-const users = (state: IState) =>
-  selectorsUserData.users(state.users);
+export const calendarEvents = (state:any) => selectorCalendarEvents.calendarEvents(state.calendarEvents);
+
+const users = (state: IState) => selectorsUserData.users(state.users);
 
 export const usersMemo = createSelector(
   users,
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
   returnedBooks: returnedBooksReducer,
   users: usersReducer,
   booksTakenUsers: booksTakenUsersReducer,
+  calendarEvents: calendarEventsReducer,
 });
 
 const store = createStore(rootReducer, persistedState, composeWithDevTools(
