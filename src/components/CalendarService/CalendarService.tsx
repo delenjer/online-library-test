@@ -7,15 +7,18 @@ import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.scss';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
-
+import { ModalTemplate } from '../../Template/ModalTemplate/ModalTemplate';
 import *as selectors from "../../store/store";
 import { getEvent, getEventDnd, deleteEvent } from "../../store/calendarReducer/action";
+import { CalendarModalContent } from "./CalendarModalContent/CalendarModalContent";
 
 //@ts-ignore
 const DragAndDropCalendar:any = withDragAndDrop(Calendar);
 const localizer = momentLocalizer(moment);
 
 export const CalendarService = () => {
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [idEvent, setIdEvent] = useState('');
   const calendarEvents = useSelector((state:any) => selectors.calendarEvents(state));
   const dispatch = useDispatch();
 
@@ -35,7 +38,13 @@ export const CalendarService = () => {
   }
 
   const handleClickEvent = (event:any) => {
-    dispatch(deleteEvent(event.id));
+    setIsOpen(true);
+    setIdEvent(event.id);
+  }
+
+  const handleDeleteEvent = () => {
+    dispatch(deleteEvent(idEvent));
+    setIsOpen(false);
   }
 
   const moveEvent = ({ event, start, end }:any) => {
@@ -48,19 +57,35 @@ export const CalendarService = () => {
     dispatch(getEventDnd(nextEvents));
   }
 
+  const closeModal = () => {
+    setIsOpen(false);
+  }
+
   return (
-    <div>
-      <DragAndDropCalendar
-        selectable
-        localizer={localizer}
-        events={calendarEvents}
-        onEventDrop={moveEvent}
-        startAccessor="start"
-        endAccessor="end"
-        style={{ height: 500 }}
-        onSelectSlot={handleSelect}
-        onSelectEvent={handleClickEvent}
-      />
-    </div>
+    <>
+      <div>
+        <DragAndDropCalendar
+          selectable
+          localizer={localizer}
+          events={calendarEvents}
+          onEventDrop={moveEvent}
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: 500 }}
+          onSelectSlot={handleSelect}
+          onSelectEvent={handleClickEvent}
+        />
+      </div>
+
+      <ModalTemplate
+        title="Change calendar event"
+        open={modalIsOpen}
+        handleClose={closeModal}
+      >
+        <CalendarModalContent
+          handleDeleteEvent={handleDeleteEvent}
+        />
+      </ModalTemplate>
+    </>
   );
 }

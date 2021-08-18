@@ -1,3 +1,5 @@
+import {CalendarModalContent} from "../components/CalendarService/CalendarModalContent/CalendarModalContent";
+
 export interface IState {
   returnedBooks: IBooks;
   users: IUsers;
@@ -106,4 +108,8 @@ export interface IAddTakenBook {
   title: string;
   authors: string;
   status: string;
+}
+
+export interface ICalendarModalContent {
+  handleDeleteEvent: () => void,
 }

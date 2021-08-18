@@ -84,3 +84,29 @@
     border-radius: 50%;
   }
 }
+
+.calendar-modal-content {
+  padding-bottom: 1rem;
+
+  &__action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+
+    &:not(:last-of-type) {
+      margin-bottom: 1.6rem;
+    }
+  }
+
+  &__label {
+    display: block;
+    font-weight: bold;
+    margin-right: 1.6rem;
+  }
+
+  &__btn {
+    display: block;
+    width: 70%;
+  }
+}
