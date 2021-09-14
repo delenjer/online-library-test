@@ -9,7 +9,12 @@ import 'react-big-calendar/lib/addons/dragAndDrop/styles.scss';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
 import { ModalTemplate } from '../../Template/ModalTemplate/ModalTemplate';
 import *as selectors from "../../store/store";
-import { getEvent, getEventDnd, deleteEvent } from "../../store/calendarReducer/action";
+import {
+  getEvent,
+  getEventDnd,
+  deleteEvent,
+  editEvent,
+} from "../../store/calendarReducer/action";
 import { CalendarModalContent } from "./CalendarModalContent/CalendarModalContent";
 
 //@ts-ignore
@@ -19,6 +24,7 @@ const localizer = momentLocalizer(moment);
 export const CalendarService = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [idEvent, setIdEvent] = useState('');
+  const [editFieldVal, setEditFieldVal] = useState('');
   const calendarEvents = useSelector((state:any) => selectors.calendarEvents(state));
   const dispatch = useDispatch();
 
@@ -40,6 +46,13 @@ export const CalendarService = () => {
   const handleClickEvent = (event:any) => {
     setIsOpen(true);
     setIdEvent(event.id);
+  }
+
+  const handleSubmit = (e:React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    dispatch(editEvent(idEvent, editFieldVal));
+    setEditFieldVal('');
   }
 
   const handleDeleteEvent = () => {
@@ -84,6 +97,9 @@ export const CalendarService = () => {
       >
         <CalendarModalContent
           handleDeleteEvent={handleDeleteEvent}
+          handleSubmit={handleSubmit}
+          editFieldVal={editFieldVal}
+          setEditFieldVal={setEditFieldVal}
         />
       </ModalTemplate>
     </>

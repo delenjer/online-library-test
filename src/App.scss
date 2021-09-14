@@ -100,6 +100,7 @@
   }
 
   &__label {
+    flex-shrink: 0;
     display: block;
     font-weight: bold;
     margin-right: 1.6rem;
@@ -107,6 +108,10 @@
 
   &__btn {
     display: block;
-    width: 70%;
+    width: 100%;
   }
+}
+
+.change-box {
+  width: 100%;
 }
