@@ -46,7 +46,7 @@ export const CalendarModalContent = (
             <Button
               variant="contained"
               color="primary"
-              className=""
+              className="change-box__save-btn"
               type="submit"
             >
               Save change

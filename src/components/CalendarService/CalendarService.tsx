@@ -53,6 +53,7 @@ export const CalendarService = () => {
 
     dispatch(editEvent(idEvent, editFieldVal));
     setEditFieldVal('');
+    setIsOpen(false);
   }
 
   const handleDeleteEvent = () => {
