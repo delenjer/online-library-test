@@ -1,13 +1,18 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Typography from "@material-ui/core/Typography";
 
-import { getCollectionBooks } from '../../api/api';
+//@ts-ignore
+import { loadingCollectionBooks } from '../../store/thunk/thunk';
+import *as selectors from '../../store/store';
+import { collectionBooksApi } from "../../api/api";
 
 export const Home = () => {
+  const collectionBooks = useSelector(state => selectors.collectionBooks(state));
 
   useEffect(() => {
-    getCollectionBooks().then(r => {
-      console.log(r);
+    collectionBooksApi().then(response => {
+      console.log(response)
     });
   },[]);
 
