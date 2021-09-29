@@ -1,3 +1,16 @@
+import axios from "axios";
+
+const BASE_URL = 'https://www.rijksmuseum.nl/api/en/collection?key=a7LmWCcH';
+
+export const getCollectionBooks = async function () {
+  try {
+    return await axios.get(`${BASE_URL}`);
+  } catch (error) {
+    console.log('Errrrror');
+  }
+}
+
+
 export const apiTakenBooksBooks = [
   {
     authors: "William S. Vincent",
