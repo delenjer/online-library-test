@@ -18,7 +18,7 @@ export const Users = () => {
   const [modalAddIsOpen, setAddIsOpen] = useState(false);
   const [addNewUSer, setNewUSer] = useState(newUser);
   const [dataId, setDataId] = useState('');
-  const users = useSelector((state:IState) => selectors.usersMemo(state));
+  const users = useSelector((state:IState) => selectors.users(state));
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -1,3 +1,32 @@
+.container-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+  grid-gap: 1rem;
+}
+
+.container-item {
+  position: relative;
+  min-height: 30rem;
+  box-sizing: border-box;
+}
+
+.container-item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.container-item-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+  padding: 1rem;
+}
+
 .table-wrap {
   margin-top: 50px;
 }

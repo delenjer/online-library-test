@@ -4,7 +4,11 @@ const BASE_URL = 'https://www.rijksmuseum.nl/api/en/collection?key=a7LmWCcH';
 
 export const collectionBooksApi = async function () {
   try {
-    return await axios.get(`${BASE_URL}`);
+    return await axios({
+      method: 'get',
+      url: `${BASE_URL}`,
+      responseType: 'json',
+    });
   } catch (error) {
     console.error(error);
   }

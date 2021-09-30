@@ -10,13 +10,16 @@ import { getReturnedBooks } from "../returnedBooksReducer/action";
 import { getTakenBooks } from "../booksTakenUsersReducer/action";
 import { getCollectionBooks } from '../collectionBooksReducer/action';
 
-// export const loadingCollectionBooks = () => {
-//   return (dispatch: (arg: { type: string }) => void) => {
-//     return collectionBooksApi().then(response => {
-//       console.log(response);
-//     });
-//   }
-// }
+export const loadingCollectionBooks = () => {
+  return (dispatch: (arg: { type: string }) => void) => {
+    collectionBooksApi()
+      .then(async data => {
+        dispatch(await getCollectionBooks(data && data.data.artObjects));
+      }).catch(() => {
+      dispatch(getCollectionBooks({}));
+    });
+  }
+}
 
 export const loadingTakenBooks = () => {
   return (dispatch: (arg: { type: string }) => void) => {

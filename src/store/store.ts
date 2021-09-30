@@ -11,24 +11,15 @@ import calendarEventsReducer, *as selectorCalendarEvents from './calendarReducer
 import collectionBooksReducer, *as selectorCollectionBooks from './collectionBooksReducer/index';
 import { loadState, saveState } from "./localeStorage/localeStorage";
 
-export const collectionBooks = (state: any) => selectorCollectionBooks.collectionBooks(state.collectionBooks);
+const collectionBooks = (state: any) => selectorCollectionBooks.collectionBooks(state.collectionBooks);
+
+export const collectionBooksMemo = createSelector(collectionBooks, (collectionBooks) => collectionBooks);
 
 export const returnedBooks = (state: IState) => selectorsReturnedBooks.returnedBooks(state.returnedBooks);
 
 export const calendarEvents = (state:any) => selectorCalendarEvents.calendarEvents(state.calendarEvents);
 
-const users = (state: IState) => selectorsUserData.users(state.users);
-
-export const usersMemo = createSelector(
-  users,
-  (users) => {
-    if (!users) {
-      return [];
-    }
-
-    return users;
-  }
-);
+export const users = (state: IState) => selectorsUserData.users(state.users);
 
 export const booksTakenUsers = (state: IState) =>
   selectorsTakenBooks.booksTakenUsers(state.booksTakenUsers);
