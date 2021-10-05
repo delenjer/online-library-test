@@ -3,12 +3,14 @@ import {
   apiReturnedBooks,
   users,
   collectionBooksApi,
+  detailsBookApi,
 } from '../../api/api';
 
 import { getUsers } from '../usersReducer/action';
 import { getReturnedBooks } from "../returnedBooksReducer/action";
 import { getTakenBooks } from "../booksTakenUsersReducer/action";
 import { getCollectionBooks } from '../collectionBooksReducer/action';
+import { getDetails } from '../detailsBookReducer/action';
 
 export const loadingCollectionBooks = () => {
   return (dispatch: (arg: { type: string }) => void) => {
@@ -18,6 +20,15 @@ export const loadingCollectionBooks = () => {
       }).catch(() => {
       dispatch(getCollectionBooks({}));
     });
+  }
+}
+
+export const loadingDetailsBook = (id:string) => {
+  return (dispatch: (arg: { type: string }) => void) => {
+    detailsBookApi(id)
+      .then(async (data:any) => {
+        dispatch(await getDetails(data));
+      })
   }
 }
 

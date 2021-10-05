@@ -10,6 +10,7 @@ import { CalendarService } from "../CalendarService/CalendarService";
 export const SideBarRouts = () => (
   <Switch>
     <Route exact path='/' component={ Home } />
+    <Route path='/details/:id' component={ Home } />
     <Route path='/taken-books/' component={ BooksTakenUsers } />
     <Route path='/returned-books/' component={ ReturnedBooks } />
     <Route path='/users/' component={ Users } />

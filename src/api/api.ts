@@ -1,17 +1,22 @@
 import axios from "axios";
 
 const BASE_URL = 'https://www.rijksmuseum.nl/api/en/collection?key=a7LmWCcH';
+const DETAILS_URL = 'https://www.rijksmuseum.nl/api/nl/collection/';
 
 export const collectionBooksApi = async function () {
-  try {
-    return await axios({
-      method: 'get',
-      url: `${BASE_URL}`,
-      responseType: 'json',
-    });
-  } catch (error) {
-    console.error(error);
-  }
+  return axios({
+    method: 'get',
+    url: `${BASE_URL}`,
+    responseType: 'json',
+  });
+}
+
+export const detailsBookApi = async function (id:string) {
+  return axios({
+    method: 'get',
+    url: `${DETAILS_URL}${id}?key=[api-key]`,
+    responseType: 'json',
+  });
 }
 
 

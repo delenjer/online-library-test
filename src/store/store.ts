@@ -9,11 +9,14 @@ import usersReducer, *as selectorsUserData from './usersReducer/index';
 import booksTakenUsersReducer, *as selectorsTakenBooks from './booksTakenUsersReducer/index';
 import calendarEventsReducer, *as selectorCalendarEvents from './calendarReducer/index';
 import collectionBooksReducer, *as selectorCollectionBooks from './collectionBooksReducer/index';
+import detailsBookReducer, *as selectorDetailsBook from './detailsBookReducer/index';
 import { loadState, saveState } from "./localeStorage/localeStorage";
 
 const collectionBooks = (state: any) => selectorCollectionBooks.collectionBooks(state.collectionBooks);
+const bookDetails = (state: any) => selectorDetailsBook.bookDetails(state.bookDetails);
 
 export const collectionBooksMemo = createSelector(collectionBooks, (collectionBooks) => collectionBooks);
+export const bookDetailsMemo = createSelector(bookDetails, (bookDetails) => bookDetails);
 
 export const returnedBooks = (state: IState) => selectorsReturnedBooks.returnedBooks(state.returnedBooks);
 
@@ -32,6 +35,7 @@ const rootReducer = combineReducers({
   booksTakenUsers: booksTakenUsersReducer,
   calendarEvents: calendarEventsReducer,
   collectionBooks: collectionBooksReducer,
+  bookDetails: detailsBookReducer,
 });
 
 const store = createStore(rootReducer, persistedState, composeWithDevTools(
