@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/online-library-test/static/css/main.2f6b7624.chunk.css",
-    "main.js": "/online-library-test/static/js/main.5377e753.chunk.js",
-    "main.js.map": "/online-library-test/static/js/main.5377e753.chunk.js.map",
+    "main.css": "/online-library-test/static/css/main.b5c863b8.chunk.css",
+    "main.js": "/online-library-test/static/js/main.6523c8c9.chunk.js",
+    "main.js.map": "/online-library-test/static/js/main.6523c8c9.chunk.js.map",
     "runtime-main.js": "/online-library-test/static/js/runtime-main.c83d2fd5.js",
     "runtime-main.js.map": "/online-library-test/static/js/runtime-main.c83d2fd5.js.map",
     "static/css/2.651f6e96.chunk.css": "/online-library-test/static/css/2.651f6e96.chunk.css",
@@ -10,14 +10,14 @@
     "static/js/2.0229d517.chunk.js.map": "/online-library-test/static/js/2.0229d517.chunk.js.map",
     "index.html": "/online-library-test/index.html",
     "static/css/2.651f6e96.chunk.css.map": "/online-library-test/static/css/2.651f6e96.chunk.css.map",
-    "static/css/main.2f6b7624.chunk.css.map": "/online-library-test/static/css/main.2f6b7624.chunk.css.map",
+    "static/css/main.b5c863b8.chunk.css.map": "/online-library-test/static/css/main.b5c863b8.chunk.css.map",
     "static/js/2.0229d517.chunk.js.LICENSE.txt": "/online-library-test/static/js/2.0229d517.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c83d2fd5.js",
     "static/css/2.651f6e96.chunk.css",
     "static/js/2.0229d517.chunk.js",
-    "static/css/main.2f6b7624.chunk.css",
-    "static/js/main.5377e753.chunk.js"
+    "static/css/main.b5c863b8.chunk.css",
+    "static/js/main.6523c8c9.chunk.js"
   ]
 }
