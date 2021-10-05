@@ -18,7 +18,7 @@ export const loadingCollectionBooks = () => {
       .then(async data => {
         dispatch(await getCollectionBooks(data && data.data.artObjects));
       }).catch(() => {
-      dispatch(getCollectionBooks({}));
+      dispatch(getCollectionBooks([]));
     });
   }
 }
@@ -27,8 +27,10 @@ export const loadingDetailsBook = (id:string) => {
   return (dispatch: (arg: { type: string }) => void) => {
     detailsBookApi(id)
       .then(async (data:any) => {
-        dispatch(await getDetails(data));
-      })
+        dispatch(await getDetails(data && data.data.artObject));
+      }).catch(() => {
+      dispatch(getDetails([]));
+    });
   }
 }
 

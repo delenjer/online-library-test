@@ -14,10 +14,10 @@ export const BooksList = () => {
   const { id }:any = useParams();
   const history = useHistory();
 
+
   useEffect(() => {
     id && setOpenModal(true);
-
-    dispatch(loadingDetailsBook(id));
+    id && dispatch(loadingDetailsBook(id));
   },[id]);
 
   useEffect(() => {

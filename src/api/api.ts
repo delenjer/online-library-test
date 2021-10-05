@@ -14,7 +14,7 @@ export const collectionBooksApi = async function () {
 export const detailsBookApi = async function (id:string) {
   return axios({
     method: 'get',
-    url: `${DETAILS_URL}${id}?key=[api-key]`,
+    url: `${DETAILS_URL}${id}?key=a7LmWCcH`,
     responseType: 'json',
   });
 }

@@ -20,3 +20,5 @@
 
 Желательно использовать Redux для работы с данными.
 
+https://data.rijksmuseum.nl/ - api
+
