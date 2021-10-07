@@ -3,10 +3,10 @@ import axios from "axios";
 const BASE_URL = 'https://www.rijksmuseum.nl/api/en/collection?key=a7LmWCcH';
 const DETAILS_URL = 'https://www.rijksmuseum.nl/api/nl/collection/';
 
-export const collectionBooksApi = async function () {
+export const collectionBooksApi = async function (countPage: number) {
   return axios({
     method: 'get',
-    url: `${BASE_URL}`,
+    url: `${BASE_URL}&ps=100&p=${countPage}`,
     responseType: 'json',
   });
 }

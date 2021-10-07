@@ -12,9 +12,9 @@ import { getTakenBooks } from "../booksTakenUsersReducer/action";
 import { getCollectionBooks } from '../collectionBooksReducer/action';
 import { getDetails } from '../detailsBookReducer/action';
 
-export const loadingCollectionBooks = () => {
+export const loadingCollectionBooks = (countPage:number) => {
   return (dispatch: (arg: { type: string }) => void) => {
-    collectionBooksApi()
+    collectionBooksApi(countPage)
       .then(async data => {
         dispatch(await getCollectionBooks(data && data.data.artObjects));
       }).catch(() => {
