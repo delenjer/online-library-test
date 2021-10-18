@@ -1,7 +1,10 @@
+import {Pagination} from "../components/Pagination/Pagination";
+
 export interface IState {
   returnedBooks: IBooks;
   users: IUsers;
   booksTakenUsers: IBooks;
+  isLoading: boolean;
 }
 
 export interface IData {
@@ -69,7 +72,7 @@ export interface IRenderTableFooter {
 }
 
 export interface IAction {
-  type: any;
+  type: string;
   data: IUsers,
   users: IUsers;
   user: IUsers;
@@ -77,6 +80,7 @@ export interface IAction {
   books: IBooks;
   book: IBooks;
   id: string;
+  payload: any;
 }
 
 export interface IDeleteElement {
@@ -113,4 +117,15 @@ export interface ICalendarModalContent {
   handleSubmit: (e:any) => void,
   setEditFieldVal: (e:any) => void,
   editFieldVal: string,
+}
+
+export interface IPagination {
+  countPage: number,
+  maxPage: number,
+  handleClickNextPage: () => void,
+  handleClickPrevPage: () => void,
+}
+
+export interface IScrollTop {
+  scrollToTop: () => void,
 }

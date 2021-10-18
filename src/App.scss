@@ -1,6 +1,16 @@
+html, body, #root {
+  height: 100%;
+}
+
 body {
   font-family: 'Lato', sans-serif;
   font-size: 14px;
+}
+
+.container {
+  position: relative;
+  height: 100%;
+  padding-bottom: 10px;
 }
 
 .container-list {
@@ -161,6 +171,12 @@ body {
 
 .loading-btn {
   margin-top: 20px;
+}
+
+.MuiButtonBase-root.scroll-top {
+  position: fixed;
+  bottom: 10px;
+  right: 24px;
 }
 
 .details {

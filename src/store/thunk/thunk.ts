@@ -11,12 +11,17 @@ import { getReturnedBooks } from "../returnedBooksReducer/action";
 import { getTakenBooks } from "../booksTakenUsersReducer/action";
 import { getCollectionBooks } from '../collectionBooksReducer/action';
 import { getDetails } from '../detailsBookReducer/action';
+import { setLoading } from '../loadingReducer/action';
 
 export const loadingCollectionBooks = (countPage:number) => {
   return (dispatch: (arg: { type: string }) => void) => {
+    dispatch(setLoading(true));
+
     collectionBooksApi(countPage)
       .then(async data => {
         dispatch(await getCollectionBooks(data && data.data.artObjects));
+
+        dispatch(setLoading(false));
       }).catch(() => {
       dispatch(getCollectionBooks([]));
     });
@@ -42,7 +47,7 @@ export const loadingTakenBooks = () => {
 
 export const loadingReturnedBooks = () => {
   return (dispatch: (arg: { type: string }) => void) => {
-    dispatch(getReturnedBooks(apiReturnedBooks));
+    dispatch(getReturnedBooks(apiReturnedBooks))
   }
 }
 

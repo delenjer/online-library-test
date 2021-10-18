@@ -6,17 +6,22 @@ import { loadingCollectionBooks, loadingDetailsBook } from '../../store/thunk/th
 import *as selectors from '../../store/store';
 import { BooksItem } from "./BooksItem";
 import { BookDetails } from "./BookDetails";
-import { ButtonTemplate } from "../../Template/ButtonTemplate/ButtonTemplate";
+import { Pagination } from "../Pagination/Pagination";
+import { IState } from "../../interface/interface";
+import CircularIndeterminate from '../Spinner/Spinner';
+import { ScrollTopButton } from "../ScrollTopButton/ScrollTopButton";
+
 
 export const BooksList = () => {
   const [modalIsOpen, setOpenModal] = useState(false);
   const [countPage, setCountPage] = useState(1);
+  const [visibleComponent, setVisibleComponent] = useState(false);
   const maxPage = 100;
   const dispatch = useDispatch();
   const collectionBooks = useSelector(state => selectors.collectionBooksMemo(state));
+  const isLoading = useSelector((state:IState) => selectors.isLoading(state));
   const { id }:any = useParams();
   const history = useHistory();
-
 
   useEffect(() => {
     id && setOpenModal(true);
@@ -26,6 +31,19 @@ export const BooksList = () => {
   useEffect(() => {
     dispatch(loadingCollectionBooks(countPage));
   },[countPage]);
+
+  useEffect(() => {
+    const handlerScroll = () => {
+      const visiblePosition = 900;
+      const scrolled = document.documentElement.scrollTop;
+
+      return scrolled >= visiblePosition ? setVisibleComponent(true) : setVisibleComponent(false)
+    }
+
+    window.addEventListener('scroll', handlerScroll);
+
+    return () => window.removeEventListener('scroll', handlerScroll);
+  },[]);
 
   const closeModal = () => {
     setOpenModal(false);
@@ -37,41 +55,28 @@ export const BooksList = () => {
 
   return (
     <>
-      <section className="container">
-        <div className="container-list">
-          {collectionBooks.map((book:any) => (
-            <BooksItem key={book.id} book={book} />
-          ))}
-        </div>
+      {
+        isLoading ? (
+          <CircularIndeterminate />
+        ) : (
+          <>
+            <div className="container-list">
+              {collectionBooks.map((book:any) => (
+                <BooksItem key={book.id} book={book} />
+              ))}
+            </div>
 
-        <div className="button-container">
-          {
-            countPage <= 1 ? (
-              <ButtonTemplate
-                handleClick={handleClickNextPage}
-                disabled={countPage >= maxPage}
-              >
-                Next page
-              </ButtonTemplate>
-            ) : (
-              <>
-                <ButtonTemplate
-                  handleClick={handleClickPrevPage}
-                >
-                  Previous page
-                </ButtonTemplate>
+            <Pagination
+              countPage={countPage}
+              maxPage={maxPage}
+              handleClickNextPage={handleClickNextPage}
+              handleClickPrevPage={handleClickPrevPage}
+            />
 
-                <ButtonTemplate
-                  handleClick={handleClickNextPage}
-                  disabled={countPage >= maxPage}
-                >
-                  Next page
-                </ButtonTemplate>
-              </>
-            )
-          }
-        </div>
-      </section>
+            {visibleComponent && <ScrollTopButton/>}
+          </>
+        )
+      }
 
       <BookDetails closeModal={closeModal} modalIsOpen={modalIsOpen} />
     </>
