@@ -2,7 +2,20 @@ export interface IState {
   returnedBooks: IBooks,
   users: IUsers,
   booksTakenUsers: IBooks,
+  collectionBooks: ICollectionBooks,
   bookDetails: IBookDetails,
+}
+
+export interface IAction {
+  type: string;
+  data: IUsers | ICollectionBooks | IBookDetails,
+  users: IUsers;
+  user: IUsers;
+  editValue: IUsers;
+  books: IBooks;
+  book: IBooks;
+  id: string;
+  payload: boolean;
 }
 
 export interface IData {
@@ -25,6 +38,45 @@ export interface IBooks {
   status: string,
   id: string,
   [name:string]: string,
+}
+
+export interface ICollectionBooksData {
+  hasImage: boolean
+  headerImage: {
+    guid: string,
+    height: number,
+    offsetPercentageX: number,
+    offsetPercentageY: number,
+    url: undefined | string,
+    width: number,
+  }
+  id: string,
+  links: any,
+  longTitle: string,
+  objectNumber: string,
+  permitDownload: boolean,
+  principalOrFirstMaker: string,
+  productionPlaces: any[],
+  showImage: boolean,
+  title: string,
+  webImage: {
+    guid: string,
+    height: number,
+    offsetPercentageX: number,
+    offsetPercentageY: number,
+    url: undefined | string,
+    width: number,
+  }
+  map(element: (book: any) => JSX.Element): any,
+}
+
+export interface ICollectionBooks {
+  collectionBooks: ICollectionBooksData,
+  isLoading: boolean,
+}
+
+export interface IBook {
+  book: ICollectionBooksData,
 }
 
 export interface IDetailsBookData {
@@ -132,18 +184,6 @@ export interface IRenderTableFooter {
   page: number;
   handleChangePage: (...arg:any[]) => void,
   handleChangeRowsPerPage: (...arg:any[]) => void,
-}
-
-export interface IAction {
-  type: string;
-  data: IUsers,
-  users: IUsers;
-  user: IUsers;
-  editValue: IUsers;
-  books: IBooks;
-  book: IBooks;
-  id: string;
-  payload: any;
 }
 
 export interface IDeleteElement {

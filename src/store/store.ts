@@ -12,7 +12,7 @@ import collectionBooksReducer, *as selectorCollectionBooks from './collectionBoo
 import detailsBookReducer, *as selectorDetailsBook from './detailsBookReducer/index';
 import { loadState, saveState } from "./localeStorage/localeStorage";
 
-const collectionBooks = (state: any) => selectorCollectionBooks.collectionBooks(state.collectionBooks);
+const collectionBooks = (state: IState) => selectorCollectionBooks.collectionBooks(state.collectionBooks);
 
 const bookDetails = (state: IState) => selectorDetailsBook.bookDetails(state.bookDetails);
 

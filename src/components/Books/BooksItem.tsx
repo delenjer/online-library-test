@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 
 import { FavoriteButton } from '../FavoriteButton/FavoriteButton';
 import notFoundImg from '../../img/unnamed.png';
+import { IBook } from "../../interface/interface";
 
-export const BooksItem = ({ book }:any) => {
+export const BooksItem: React.FC<IBook> = ({ book }) => {
 
   const handleFavorite = (e:React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
-
-    console.log('Click');
   }
 
   return (

@@ -1,5 +1,5 @@
 import { GET_DETAILS, SET_LOADING_DETAILS } from './action';
-import { IBookDetails } from "../../interface/interface";
+import { IAction, IBookDetails } from '../../interface/interface';
 
 export const bookDetails = (state:IBookDetails) => state;
 
@@ -8,7 +8,7 @@ const initialState = {
   isLoading: false,
 }
 
-const detailsBookReducer = (state = initialState, action: any) => {
+const detailsBookReducer = (state = initialState, action: IAction) => {
   switch (action.type) {
     case GET_DETAILS:
       return {...state, bookDetails: action.data};

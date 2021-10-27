@@ -9,7 +9,7 @@ import { BookDetails } from "./BookDetails";
 import { Pagination } from "../Pagination/Pagination";
 import CircularIndeterminate from '../Spinner/Spinner';
 import { ScrollTopButton } from "../ScrollTopButton/ScrollTopButton";
-import { IState } from "../../interface/interface";
+import { IState } from '../../interface/interface';
 
 export const BooksList: React.FC = () => {
   const [modalIsOpen, setOpenModal] = useState(false);
@@ -17,7 +17,7 @@ export const BooksList: React.FC = () => {
   const [visibleComponent, setVisibleComponent] = useState(false);
   const maxPage = 100;
   const dispatch = useDispatch();
-  const {collectionBooks, isLoading} = useSelector(state => selectors.collectionBooksMemo(state));
+  const { collectionBooks, isLoading } = useSelector((state: IState) => selectors.collectionBooksMemo(state));
   const { id }:any = useParams();
   const history = useHistory();
 
@@ -59,7 +59,7 @@ export const BooksList: React.FC = () => {
         ) : (
           <>
             <div className="container-list">
-              {collectionBooks.map((book:any) => (
+              {collectionBooks.map((book) => (
                 <BooksItem key={book.id} book={book} />
               ))}
             </div>
