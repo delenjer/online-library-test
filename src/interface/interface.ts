@@ -1,10 +1,8 @@
-import {Pagination} from "../components/Pagination/Pagination";
-
 export interface IState {
-  returnedBooks: IBooks;
-  users: IUsers;
-  booksTakenUsers: IBooks;
-  isLoading: boolean;
+  returnedBooks: IBooks,
+  users: IUsers,
+  booksTakenUsers: IBooks,
+  bookDetails: IBookDetails,
 }
 
 export interface IData {
@@ -27,6 +25,71 @@ export interface IBooks {
   status: string,
   id: string,
   [name:string]: string,
+}
+
+export interface IDetailsBookData {
+  acquisition: any,
+  artistRole: null,
+  associations: [],
+  catRefRPK: [],
+  classification: any,
+  colors: any[],
+  colorsWithNormalization: any[],
+  copyrightHolder: string,
+  dating: any,
+  description: null
+  dimensions: any[],
+  documentation: any[],
+  exhibitions: any[],
+  hasImage: boolean,
+  historicalPersons: any[],
+  id: string,
+  inscriptions: any[],
+  label: any,
+  labelText: null
+  language: string,
+  links: any,
+  location: string,
+  longTitle: string,
+  makers: any[],
+  materials: any[],
+  normalized32Colors: any[],
+  normalizedColors: any[],
+  objectCollection: any[],
+  objectNumber: string,
+  objectTypes: any[],
+  physicalMedium: string,
+  physicalProperties: []
+  plaqueDescriptionDutch: string,
+  plaqueDescriptionEnglish: string,
+  principalMaker: string,
+  principalMakers: any[],
+  principalOrFirstMaker: string,
+  priref: string,
+  productionPlaces: any[],
+  scLabelLine: string,
+  showImage: true
+  subTitle: string,
+  techniques: any[],
+  title: string,
+  titles: any[],
+  webImage: {
+    guid: string,
+    height: number,
+    offsetPercentageX: number,
+    offsetPercentageY: number,
+    url: undefined | string,
+  }
+}
+
+export interface IBookDetails {
+  bookDetails: IDetailsBookData,
+  isLoading: boolean,
+}
+
+export interface IBookDetailsComponent {
+  modalIsOpen: boolean,
+  closeModal: () => void,
 }
 
 export interface ITableHoc {
@@ -126,6 +189,6 @@ export interface IPagination {
   handleClickPrevPage: () => void,
 }
 
-export interface IScrollTop {
-  scrollToTop: () => void,
+export interface IFavoriteButton {
+  handleFavorite: (e:any) => void,
 }

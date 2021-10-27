@@ -7,19 +7,17 @@ import *as selectors from '../../store/store';
 import { BooksItem } from "./BooksItem";
 import { BookDetails } from "./BookDetails";
 import { Pagination } from "../Pagination/Pagination";
-import { IState } from "../../interface/interface";
 import CircularIndeterminate from '../Spinner/Spinner';
 import { ScrollTopButton } from "../ScrollTopButton/ScrollTopButton";
+import { IState } from "../../interface/interface";
 
-
-export const BooksList = () => {
+export const BooksList: React.FC = () => {
   const [modalIsOpen, setOpenModal] = useState(false);
   const [countPage, setCountPage] = useState(1);
   const [visibleComponent, setVisibleComponent] = useState(false);
   const maxPage = 100;
   const dispatch = useDispatch();
-  const collectionBooks = useSelector(state => selectors.collectionBooksMemo(state));
-  const isLoading = useSelector((state:IState) => selectors.isLoading(state));
+  const {collectionBooks, isLoading} = useSelector(state => selectors.collectionBooksMemo(state));
   const { id }:any = useParams();
   const history = useHistory();
 

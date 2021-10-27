@@ -4,7 +4,6 @@ import thunk from 'redux-thunk';
 import { createSelector } from 'reselect'
 
 import { IState } from "../interface/interface";
-import loadingReducer, *as selectorIsLoading from './loadingReducer/index';
 import returnedBooksReducer, *as selectorsReturnedBooks from './returnedBooksReducer/index';
 import usersReducer, *as selectorsUserData from './usersReducer/index';
 import booksTakenUsersReducer, *as selectorsTakenBooks from './booksTakenUsersReducer/index';
@@ -13,12 +12,12 @@ import collectionBooksReducer, *as selectorCollectionBooks from './collectionBoo
 import detailsBookReducer, *as selectorDetailsBook from './detailsBookReducer/index';
 import { loadState, saveState } from "./localeStorage/localeStorage";
 
-export const isLoading = (state: IState) => selectorIsLoading.isLoading(state.isLoading);
-
 const collectionBooks = (state: any) => selectorCollectionBooks.collectionBooks(state.collectionBooks);
-const bookDetails = (state: any) => selectorDetailsBook.bookDetails(state.bookDetails);
+
+const bookDetails = (state: IState) => selectorDetailsBook.bookDetails(state.bookDetails);
 
 export const collectionBooksMemo = createSelector(collectionBooks, (collectionBooks) => collectionBooks);
+
 export const bookDetailsMemo = createSelector(bookDetails, (bookDetails) => bookDetails);
 
 export const returnedBooks = (state: IState) => selectorsReturnedBooks.returnedBooks(state.returnedBooks);
@@ -33,7 +32,6 @@ export const booksTakenUsers = (state: IState) =>
 const persistedState = loadState();
 
 const rootReducer = combineReducers({
-  isLoading: loadingReducer,
   returnedBooks: returnedBooksReducer,
   users: usersReducer,
   booksTakenUsers: booksTakenUsersReducer,

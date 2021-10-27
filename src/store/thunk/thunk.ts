@@ -9,32 +9,37 @@ import {
 import { getUsers } from '../usersReducer/action';
 import { getReturnedBooks } from "../returnedBooksReducer/action";
 import { getTakenBooks } from "../booksTakenUsersReducer/action";
-import { getCollectionBooks } from '../collectionBooksReducer/action';
-import { getDetails } from '../detailsBookReducer/action';
-import { setLoading } from '../loadingReducer/action';
+import { getCollectionBooks, setLoadingBooks } from '../collectionBooksReducer/action';
+import { getDetails, setLoadingDetails } from '../detailsBookReducer/action';
 
 export const loadingCollectionBooks = (countPage:number) => {
   return (dispatch: (arg: { type: string }) => void) => {
-    dispatch(setLoading(true));
+    dispatch(setLoadingBooks(true));
 
     collectionBooksApi(countPage)
       .then(async data => {
         dispatch(await getCollectionBooks(data && data.data.artObjects));
 
-        dispatch(setLoading(false));
+        dispatch(setLoadingBooks(false));
       }).catch(() => {
       dispatch(getCollectionBooks([]));
+      dispatch(setLoadingBooks(false));
     });
   }
 }
 
 export const loadingDetailsBook = (id:string) => {
   return (dispatch: (arg: { type: string }) => void) => {
+    dispatch(setLoadingDetails(true));
+
     detailsBookApi(id)
       .then(async (data:any) => {
         dispatch(await getDetails(data && data.data.artObject));
+
+        dispatch(setLoadingDetails(false));
       }).catch(() => {
-      dispatch(getDetails([]));
+      dispatch(getDetails({}));
+      dispatch(setLoadingDetails(false));
     });
   }
 }
