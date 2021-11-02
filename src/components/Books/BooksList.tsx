@@ -45,7 +45,7 @@ export const BooksList: React.FC = () => {
 
   const closeModal = () => {
     setOpenModal(false);
-    history.push('/');
+    history.push('/home');
   };
 
   const handleClickNextPage = () => setCountPage(prevState => prevState + 1);

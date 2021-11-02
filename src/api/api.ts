@@ -218,4 +218,7 @@ export const users = [
   // }
 ]
 
-
+export const loginApi = {
+  login: 'admin',
+  password: '123456789',
+}

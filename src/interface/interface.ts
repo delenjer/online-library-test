@@ -232,3 +232,16 @@ export interface IPagination {
 export interface IFavoriteButton {
   handleFavorite: (e:any) => void,
 }
+
+
+export interface IFieldsForm {
+  isError: {
+    errorLogin: boolean;
+    errorPassword: boolean;
+  };
+  fieldVal: {
+    login: string;
+    password: string;
+  };
+  handleTextField: (e:any) => void;
+}

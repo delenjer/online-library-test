@@ -89,3 +89,13 @@ export const modalStyles = (theme: Theme) =>
       color: theme.palette.grey[500],
     },
   });
+
+export const loginFields = {
+  login: '',
+  password: '',
+}
+
+export const errorFields = {
+  errorLogin: false,
+  errorPassword: false,
+}
