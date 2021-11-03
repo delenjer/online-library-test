@@ -2,6 +2,12 @@
 
 **Demo link - https://delenjer.github.io/online-library-test/**
 
+Test authentication
+
+_Login_ - admin;
+
+_Password_ - 123
+
 **Description**
 
 Онлайн библиотека
