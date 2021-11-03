@@ -3,7 +3,6 @@ import TextField from '@mui/material/TextField';
 import { IFieldsForm } from '../../interface/interface';
 
 export const FieldsForm: React.FC<IFieldsForm> = ({ isError, fieldVal, handleTextField }) => {
-  console.log(fieldVal);
 
   return (
     <>

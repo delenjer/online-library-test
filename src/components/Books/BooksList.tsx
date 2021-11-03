@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 
 import { loadingCollectionBooks, loadingDetailsBook } from '../../store/thunk/thunk';
 import *as selectors from '../../store/store';
@@ -45,7 +45,7 @@ export const BooksList: React.FC = () => {
 
   const closeModal = () => {
     setOpenModal(false);
-    history.push('/home');
+    history.push('/');
   };
 
   const handleClickNextPage = () => setCountPage(prevState => prevState + 1);

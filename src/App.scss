@@ -7,6 +7,12 @@ body {
   font-size: 14px;
 }
 
+.toolbar {
+  &__title {
+    flex-grow: 1;
+  }
+}
+
 .container {
   position: relative;
   height: 100%;

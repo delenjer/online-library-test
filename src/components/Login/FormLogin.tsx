@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { loginApi } from '../../api/api';
 import { loginFields, errorFields } from '../../helpers/helpers';
 import { FieldsForm } from './FieldsForm';
+import { setToken } from '../../store/authenticationReducer/action';
+import * as selector from '../../store/store';
 
 export const FormLogin: React.FC = () => {
   const [ fieldVal, setFieldVal ] = useState(loginFields);
   const [ isError, setError ] = useState(errorFields);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleTextField = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     switch (e.target.type) {
@@ -49,7 +53,8 @@ export const FormLogin: React.FC = () => {
     }
 
     if (loginApi.password === fieldVal.password && loginApi.login === fieldVal.login) {
-      history.push('/home');
+      history.push('/');
+      dispatch(setToken(true));
     }
   }
 

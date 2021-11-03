@@ -10,6 +10,7 @@ import booksTakenUsersReducer, *as selectorsTakenBooks from './booksTakenUsersRe
 import calendarEventsReducer, *as selectorCalendarEvents from './calendarReducer/index';
 import collectionBooksReducer, *as selectorCollectionBooks from './collectionBooksReducer/index';
 import detailsBookReducer, *as selectorDetailsBook from './detailsBookReducer/index';
+import authenticationReducer, *as selectorAuthentication from './authenticationReducer/index';
 import { loadState, saveState } from "./localeStorage/localeStorage";
 
 const collectionBooks = (state: IState) => selectorCollectionBooks.collectionBooks(state.collectionBooks);
@@ -26,6 +27,8 @@ export const calendarEvents = (state:any) => selectorCalendarEvents.calendarEven
 
 export const users = (state: IState) => selectorsUserData.users(state.users);
 
+export const authentication = (state: any) => selectorAuthentication.authentication(state.authentication);
+
 export const booksTakenUsers = (state: IState) =>
   selectorsTakenBooks.booksTakenUsers(state.booksTakenUsers);
 
@@ -38,6 +41,7 @@ const rootReducer = combineReducers({
   calendarEvents: calendarEventsReducer,
   collectionBooks: collectionBooksReducer,
   bookDetails: detailsBookReducer,
+  authentication: authenticationReducer,
 });
 
 const store = createStore(rootReducer, persistedState, composeWithDevTools(
@@ -49,6 +53,7 @@ store.subscribe(() => {
     booksTakenUsers: store.getState().booksTakenUsers,
     users: store.getState().users,
     returnedBooks: store.getState().returnedBooks,
+    authentication: store.getState().authentication,
   });
 });
 
