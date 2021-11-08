@@ -10,6 +10,15 @@ import { CalendarService } from '../CalendarService/CalendarService';
 import *as selector from '../../store/store';
 import { Login } from '../Login/Login';
 
+const routes = [
+    {exact: true, path: '/', component: Home},
+    {path: '/details/:id', component: Home},
+    {path: '/taken-books/', component: BooksTakenUsers},
+    {path: '/returned-books/', component: ReturnedBooks},
+    {path: '/users/', component: Users},
+    {path: '/calendar/', component: CalendarService},
+];
+
 export const SideBarRouts = () => {
     const authentication = useSelector(state => selector.authentication(state));
     const history = useHistory();
@@ -19,16 +28,19 @@ export const SideBarRouts = () => {
         if (!authentication) {
             history.push('/');
         }
-    }, [authentication, location.pathname]);
+    }, [location.pathname]);
 
     return (
       <Switch>
-        <Route exact path='/'  component={ authentication ? Home : Login } />
-        <Route path='/details/:id' component={ authentication ? Home : Login } />
-        <Route path='/taken-books/' component={ authentication ? BooksTakenUsers : Login } />
-        <Route path='/returned-books/' component={ authentication ? ReturnedBooks : Login } />
-        <Route path='/users/' component={ authentication ? Users : Login } />
-        <Route path='/calendar/' component={ authentication ? CalendarService : Login } />
+          {
+              routes.map(route => (
+                <Route
+                  exact={route.exact}
+                  path={route.path}
+                  children={authentication ? <route.component /> : Login}
+                />
+              ))
+          }
       </Switch>
     );
 }
